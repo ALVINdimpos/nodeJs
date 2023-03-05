@@ -1,5 +1,5 @@
-const Comment = require('../models/comment');
-const Joi = require('joi');
+const Comment = require("../models/comment");
+const Joi = require("joi");
 
 // Create a comment
 exports.createComment = async (req, res, next) => {
@@ -12,7 +12,7 @@ exports.createComment = async (req, res, next) => {
     const comment = new Comment({
       blog: req.params.blogId,
       commenterName: req.body.commenterName,
-      commentBody: req.body.commentBody
+      commentBody: req.body.commentBody,
     });
 
     const savedComment = await comment.save();
@@ -39,16 +39,16 @@ exports.deleteComment = async (req, res, next) => {
   try {
     const comment = await Comment.findOne({
       _id: req.params.commentId,
-      blog: req.params.blogId
+      blog: req.params.blogId,
     });
 
     if (!comment) {
-      return res.status(404).send('Comment not found');
+      return res.status(404).send("Comment not found");
     }
 
     await comment.remove();
 
-    res.status(200).send('Comment deleted successfully');
+    res.status(200).send("Comment deleted successfully");
   } catch (err) {
     next(err);
   }
@@ -58,7 +58,7 @@ exports.deleteComment = async (req, res, next) => {
 function validateComment(comment) {
   const schema = Joi.object({
     commenterName: Joi.string().min(2).max(255).required(),
-    commentBody: Joi.string().min(10).max(2000).required()
+    commentBody: Joi.string().min(10).max(2000).required(),
   });
 
   return schema.validate(comment);
