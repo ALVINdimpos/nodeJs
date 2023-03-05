@@ -1,23 +1,31 @@
-// blog model
 const mongoose = require('mongoose');
 
 const blogSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
+    minlength: 5,
+    maxlength: 255
   },
   content: {
     type: String,
-    required: true
+    required: true,
+    minlength: 10,
+    maxlength: 2000
   },
   author: {
     type: String,
-    required: true
+    required: true,
+    minlength: 2,
+    maxlength: 100
   },
-  date: {
+  createdAt: {
     type: Date,
     default: Date.now
   }
 });
 
-module.exports = mongoose.model('Blog', blogSchema);
+const Blog = mongoose.model('Blog', blogSchema);
+
+module.exports = Blog;
+

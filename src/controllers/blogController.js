@@ -1,81 +1,62 @@
 const Blog = require('../models/Blog');
+const Joi = require('joi');
 
-// Create a new blog post
-exports.createBlog = async function(req, res) {
-  const { title, content, author,date } = req.body;
-  try {
-    const blog = await Blog.create({
-      title,
-      content,
-      author,
-      date
-    });
-    res.status(201).json(blog);
-  } catch (err) {
-    console.error(err);
-    if (err.name === 'ValidationError') {
-      return res.status(400).json({ errors: err.errors });
-    }
-    res.status(500).json({ error: 'Server error' });
-  }
-}
-// Get all blog posts
-exports.getAllBlogs = async function(req, res) {
-  try {
-    const blogs = await Blog.find();
-    res.json(blogs);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
-}
 
-// Get a blog post by ID
-exports.getBlogById = async function(req, res) {
-  const { id } = req.params;
-  try {
-    const blog = await Blog.findById(id);
-    if (!blog) {
-      return res.status(404).json({ error: 'Blog not found' });
-    }
-    res.json(blog);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
-}
+exports.getAllBlogs = async (req, res) => {
+  const blogs = await Blog.find();
+  res.send(blogs);
+};
 
-// Update a blog post by ID
-exports.updateBlogId = async function(req, res) {
-  const { id } = req.params;
-  const { title, content, author } = req.body;
-  try {
-    const blog = await Blog.findById(id);
-    if (!blog) {
-      return res.status(404).json({ error: 'Blog not found' });
-    }
-    blog.title = title || blog.title;
-    blog.content = content || blog.content;
-    blog.author = author || blog.author;
-    const updatedBlog = await blog.save();
-    res.json(updatedBlog);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
-}
+exports.getBlogById = async (req, res) => {
+  const blog = await Blog.findById(req.params.id);
+  if (!blog) return res.status(404).send('Blog not found');
+  res.send(blog);
+};
 
-// Delete a blog post by ID
-exports.deleteBlogId = async function(req, res) {
-  const { id } = req.params;
-  try {
-    const blog = await Blog.findByIdAndDelete(id);
-    if (!blog) {
-      return res.status(404).json({ error: 'Blog not found' });
-    }
-    res.json({ message: 'Blog deleted successfully' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
+exports.createBlog = async (req, res) => {
+  const { error } = validateBlog(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const blog = new Blog({
+    title: req.body.title,
+    content: req.body.content,
+    author: req.body.author
+  });
+
+  await blog.save();
+  res.send(blog);
+};
+
+exports.updateBlog = async (req, res) => {
+  const { error } = validateBlog(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const blog = await Blog.findByIdAndUpdate(
+    req.params.id,
+    {
+      title: req.body.title,
+      content: req.body.content,
+      author: req.body.author
+    },
+    { new: true }
+  );
+
+  if (!blog) return res.status(404).send('Blog not found');
+  res.send(blog);
+};
+
+exports.deleteBlog = async (req, res) => {
+  const blog = await Blog.findByIdAndRemove(req.params.id);
+  if (!blog) return res.status(404).send('Blog not found');
+  res.send(blog);
+};
+
+function validateBlog(blog) {
+  const schema = Joi.object({
+    title: Joi.string().min(5).max(255).required(),
+    content: Joi.string().min(10).max(2000).required(),
+    author: Joi.string().min(2).max(100).required()
+  });
+
+  return schema.validate(blog);
 }

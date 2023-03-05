@@ -6,6 +6,7 @@ const morgan =require('morgan');
 const authRoutes = require('./routes/authRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const userRoutes = require('./routes/userRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 const { port, database } = require('./config/config');
 const app = express();
@@ -28,6 +29,7 @@ mongoose.connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/api', blogRoutes);
 app.use('/api', userRoutes);
 app.use('/api', authRoutes);
+app.use('/api', commentRoutes);
 
 // Start the server
 app.listen(port, () => {
