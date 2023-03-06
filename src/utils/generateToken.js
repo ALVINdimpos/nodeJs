@@ -6,6 +6,7 @@ function generateToken(user) {
       sub: user._id,
       name: user.name,
       email: user.email,
+      password:user.password
     },
    secret,
     { expiresIn: "1h" }
