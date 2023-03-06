@@ -1,5 +1,5 @@
-const Blog = require("../models/Blog");
-const Joi = require("joi");
+import Blog from "../models/Blog";
+import Joi from "joi";
 
 exports.getAllBlogs = async (req, res) => {
   const blogs = await Blog.find();

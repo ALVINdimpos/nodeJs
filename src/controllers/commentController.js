@@ -1,5 +1,5 @@
-const Comment = require("../models/comment");
-const Joi = require("joi");
+import Comment from "../models/comment";
+import Joi from "joi";
 
 // Create a comment
 exports.createComment = async (req, res, next) => {

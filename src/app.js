@@ -27,9 +27,9 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // Define routes
+app.use("/api", authRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", userRoutes);
-app.use("/api", authRoutes);
 app.use("/api", commentRoutes);
 
 // Start the server

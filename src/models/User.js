@@ -1,7 +1,7 @@
 // user model
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-var bcrypt = require("bcrypt-nodejs");
+import mongoose from "mongoose";
+const { Schema } = mongoose;
+import bcrypt from "bcrypt-nodejs";
 
 // user schema
 var UserSchema = new Schema({
@@ -19,6 +19,11 @@ var UserSchema = new Schema({
     type: String,
     required: [true, "Password is required"],
     minlength: [8, "Password should have at least 8 characters"],
+  },
+  username: {
+    type: String,
+    unique: true,
+    required: [true, "Username is required"],
   },
   createdAt: {
     type: Date,
