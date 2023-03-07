@@ -20,28 +20,19 @@ Author
 Installation
 
     Clone the repository to your local machine:
+    git clone https://github.com/example/my-brand-api.git
+Navigate to the root directory of the project and install the required packages:
+    cd my-brand-api
+    npm install
 
-bash
+ Create a .env file in the root directory of the project and add the following environment variables:
 
-git clone https://github.com/example/my-brand-api.git
+    EMAIL_ADDRESS=your_email_address
+    EMAIL_PASSWORD=your_email_password
 
-    Navigate to the root directory of the project and install the required packages:
+Start the development server:
 
-bash
-
-cd my-brand-api
-npm install
-
-    Create a .env file in the root directory of the project and add the following environment variables:
-
-makefile
-
-EMAIL_ADDRESS=your_email_address
-EMAIL_PASSWORD=your_email_password
-
-    Start the development server:
-
-npm run dev
+    npm run dev
 
 Usage
 Sending a query
