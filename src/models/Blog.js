@@ -19,6 +19,12 @@ const blogSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 100,
   },
+  image: {
+    type: String,
+    required: true,
+    minlength: 2,
+    maxlength: 400,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

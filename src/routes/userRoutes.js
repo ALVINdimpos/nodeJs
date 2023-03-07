@@ -9,9 +9,11 @@ router.get("/users", userController.getUsers);
 // POST /api/users - Create a new user
 router.post(
   "/user",
-  body("name").notEmpty().withMessage("Username is required"),
   body("email").isEmail().withMessage("Invalid email format"),
   body("password")
+    .isLength({ min: 6 })
+    .withMessage("Password must be at least 6 characters long"),
+    body("confirmpassword")
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters long"),
   (req, res, next) => {

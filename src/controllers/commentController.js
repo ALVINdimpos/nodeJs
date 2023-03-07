@@ -11,7 +11,6 @@ exports.createComment = async (req, res, next) => {
 
     const comment = new Comment({
       blog: req.params.blogId,
-      commenterName: req.body.commenterName,
       commentBody: req.body.commentBody,
     });
 
@@ -57,7 +56,6 @@ exports.deleteComment = async (req, res, next) => {
 // Joi validation schema for comments
 function validateComment(comment) {
   const schema = Joi.object({
-    commenterName: Joi.string().min(2).max(255).required(),
     commentBody: Joi.string().min(10).max(2000).required(),
   });
 

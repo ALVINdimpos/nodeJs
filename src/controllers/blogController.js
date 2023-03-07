@@ -20,6 +20,7 @@ exports.createBlog = async (req, res) => {
     title: req.body.title,
     content: req.body.content,
     author: req.body.author,
+    image:req.body.image
   });
 
   await blog.save();
@@ -36,6 +37,7 @@ exports.updateBlog = async (req, res) => {
       title: req.body.title,
       content: req.body.content,
       author: req.body.author,
+      image:req.body.image
     },
     { new: true }
   );
@@ -55,6 +57,7 @@ function validateBlog(blog) {
     title: Joi.string().min(5).max(255).required(),
     content: Joi.string().min(10).max(2000).required(),
     author: Joi.string().min(2).max(100).required(),
+    image:Joi.string().min(2).max(2000).required()
   });
 
   return schema.validate(blog);

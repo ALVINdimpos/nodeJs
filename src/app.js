@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const userRoutes = require("./routes/userRoutes");
 const commentRoutes = require("./routes/commentRoutes");
+import querriesRoutes from './routes/querriesRoutes';
 
 const { port, database } = require("./config/config");
 const app = express();
@@ -31,6 +32,7 @@ app.use("/api", authRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", userRoutes);
 app.use("/api", commentRoutes);
+app.use("/api", querriesRoutes);
 
 // Start the server
 app.listen(port, () => {

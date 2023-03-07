@@ -5,10 +5,6 @@ import bcrypt from "bcrypt-nodejs";
 
 // user schema
 var UserSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Name is required"],
-  },
   email: {
     type: String,
     required: [true, "Email is required"],
@@ -20,7 +16,7 @@ var UserSchema = new Schema({
     required: [true, "Password is required"],
     minlength: [8, "Password should have at least 8 characters"],
   },
-  username: {
+  confirmpassword: {
     type: String,
     unique: true,
     required: [true, "Username is required"],

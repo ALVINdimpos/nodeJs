@@ -6,13 +6,6 @@ const commentSchema = new mongoose.Schema({
     ref: "Blog",
     required: true,
   },
-  commenterName: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 2,
-    maxlength: 255,
-  },
   commentBody: {
     type: String,
     required: true,
