@@ -19,7 +19,7 @@ Author
 
 Installation
 
-    Clone the repository to your local machine:
+Clone the repository to your local machine:
     git clone https://github.com/example/my-brand-api.git
 Navigate to the root directory of the project and install the required packages:
     cd my-brand-api
@@ -41,11 +41,11 @@ To send a query or message via the API, make a POST request to the /api/send-que
 
 perl
 
-{
-  "name": "fiston alvin",
-  "email": fistonalvin@example.com",
-  "message": "This is a test message."
-}
+   {
+      "name": "fiston alvin",
+      "email": fistonalvin@example.com",
+      "message": "This is a test message."
+   }
 
 Response
 
@@ -53,10 +53,10 @@ The API will return a 200 OK response with the following response body:
 
 json
 
-{
-  "success": true,
-  "message": "Message sent successfully."
-}
+   {
+       "success": true,
+       "message": "Message sent successfully."
+    }
 
 Error handling
 
@@ -64,10 +64,10 @@ If the API encounters an error while sending the email, it will return a 500 Int
 
 json
 
-{
-  "success": false,
-  "message": "Error sending message."
-}
+    {
+        "success": false,
+        "message": "Error sending message."
+    }
 
 Contributing
 
