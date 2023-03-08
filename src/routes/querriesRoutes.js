@@ -1,8 +1,18 @@
-import express from 'express';
-import emailController from '../controllers/querriesController';
+const express = require('express');
+const queriesController = require('../controllers/querriesController');
 
 const router = express.Router();
 
-router.post('/send-querry', emailController.sendEmail);
+// Retrieve all queries
+router.get('/queries', queriesController.getAllQueries);
 
-export default router;
+// Create a new query
+router.post('/queries/create', queriesController.createQuery);
+
+// Update an existing query
+router.put('/queries/update/:id', queriesController.updateQuery);
+
+// Delete a query
+router.delete('/queries/delete/:id', queriesController.deleteQuery);
+
+module.exports = router;

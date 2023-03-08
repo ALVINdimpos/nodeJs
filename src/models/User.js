@@ -14,12 +14,12 @@ var UserSchema = new Schema({
   password: {
     type: String,
     required: [true, "Password is required"],
-    minlength: [8, "Password should have at least 8 characters"],
+    minlength: [3, "Password should have at least 8 characters"],
   },
   confirmpassword: {
     type: String,
     unique: true,
-    required: [true, "Username is required"],
+    required: [true, "confim password is required"],
   },
   createdAt: {
     type: Date,

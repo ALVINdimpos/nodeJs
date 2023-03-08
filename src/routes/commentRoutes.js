@@ -3,7 +3,7 @@ const router = express.Router();
 const commentController = require("../controllers/commentController");
 
 // POST /blog/:blogId/comments
-router.post("/blog/:blogId/comments", commentController.createComment);
+router.post("/blog/create/:blogId/comments", commentController.createComment);
 
 // GET /blogs/:blogId/comments
 router.get("/blog/:blogId/comments", commentController.getComments);

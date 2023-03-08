@@ -1,47 +1,70 @@
-import nodemailer from 'nodemailer';
-import Email from '../models/querries';
-const Joi = require('joi');
+const queriesModel = require('../models/querries');
+const nodemailer = require('nodemailer');
 
-const sendEmail = async (req, res) => {
+const queriesController = {};
+
+// Retrieve all queries
+queriesController.getAllQueries = async (req, res, next) => {
   try {
-    const {subject, message } = req.body;
-
-    // Validate request body
-    const schema = Joi.object({
-      subject: Joi.string().required(),
-      message: Joi.string().required(),
-    });
-    const { error } = schema.validate(req.body);
-    if (error) {
-      return res.status(400).json({ message: error.details[0].message });
-    }
-
-    // Create new email object
-    const email = new Email({
-      subject,
-      message,
-    });
-    await email.save();
-
-    // Send email
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        method: "none" 
-      },
-    });
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      subject,
-      text: message,
-    };
-    await transporter.sendMail(mailOptions);
-
-    res.status(200).json({ message: 'Email sent successfully' });
+    const queries = await queriesModel.find();
+    res.json(queries);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    next(error);
   }
 };
 
-export default { sendEmail };
+// Create a new query
+queriesController.createQuery = async (req, res, next) => {
+  try {
+    const { name, email, message } = req.body;
+    const query = new queriesModel({ name, email, message });
+    await query.save();
+
+    // Send email notification to website owner
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+      }
+    });
+
+    const mailOptions = {
+      from:`${email}`,
+      to: 'fistonalvin@gmail.com',
+      subject: 'New Query',
+      text: `You have a new query from ${name} (${email}): ${message}`
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.json({ message: 'Query created successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Update an existing query
+queriesController.updateQuery = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, email, message } = req.body;
+    const query = await queriesModel.findByIdAndUpdate(id, { name, email, message });
+    res.json({ message: 'Query updated successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Delete a query
+queriesController.deleteQuery = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await queriesModel.findByIdAndDelete(id);
+    res.json({ message: 'Query deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = queriesController;

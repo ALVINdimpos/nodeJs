@@ -1,22 +1,24 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const emailSchema = new mongoose.Schema({
-  to: {
+const queriesSchema = new mongoose.Schema({
+  name: {
     type: String,
-    default:'fistonalvin@gmail.com'
+    required: true
   },
-  subject: {
+  email: {
     type: String,
-    required: true,
+    required: true
   },
   message: {
     type: String,
-    required: true,
+    required: true
   },
-}, {
-  timestamps: true,
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-const Email = mongoose.model('Email', emailSchema);
+const queriesModel = mongoose.model('Queries', queriesSchema);
 
-export default Email;
+module.exports = queriesModel;

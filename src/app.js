@@ -1,8 +1,9 @@
-// initialize the Express app, load configuration files, connect to the database, define middleware, and register routes.
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -11,7 +12,7 @@ import querriesRoutes from './routes/querriesRoutes';
 
 const { port, database } = require("./config/config");
 const app = express();
-require("./swagger")(app);
+
 // Connect to the database
 mongoose
   .connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -27,12 +28,25 @@ mongoose
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 // Define routes
-app.use("/api", authRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", userRoutes);
 app.use("/api", commentRoutes);
 app.use("/api", querriesRoutes);
+app.use("/api", authRoutes);
+
+// Set up Swagger
+const swaggerDefinition = require('./swagger.json');
+
+const options = {
+  swaggerDefinition,
+  apis: ['../routes/*.js'], // Path to the API routes files
+};
+
+const swaggerSpec = swaggerJSDoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start the server
 app.listen(port, () => {
