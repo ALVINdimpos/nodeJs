@@ -35,19 +35,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Token"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -79,19 +79,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Token"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -108,19 +108,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -146,19 +146,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref":""
             }
           }
         }
@@ -191,19 +191,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Token"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -278,19 +278,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/BlogPost"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -307,19 +307,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/BlogPost"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -344,19 +344,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/BlogPost"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -375,25 +375,53 @@
             "description": "Id of the blog post",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title of the blog post",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "in": "formData",
+            "description": "Content of the blog post",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "author",
+            "in": "formData",
+            "description": "Author of the blog post",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Image of the blog post",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/BlogPost"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -418,19 +446,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/BlogPost"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -455,19 +483,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/BlogPost"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -492,19 +520,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/BlogPost"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
@@ -529,19 +557,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/BlogPost"
+              "$ref": ""
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": ""
             }
           }
         }
