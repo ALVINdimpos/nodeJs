@@ -30,7 +30,7 @@ queriesController.createQuery = async (req, res, next) => {
     });
 
     const mailOptions = {
-      from:`${email}`,
+      from: email, // set the from field to the email variable
       to: 'fistonalvin@gmail.com',
       subject: 'New Query',
       text: `You have a new query from ${name} (${email}): ${message}`
