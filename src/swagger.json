@@ -581,7 +581,124 @@
           }
         }
       }
+    },
+    "/queries":{
+      "get":{
+        "tags": ["Querries"],
+        "summary": "Get all querries",
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": ""
+            }
+          }
+        }
+      }
+    },
+    "/queries/create":{
+      "post":{
+        "tags": ["Querries"],
+        "summary": "Get a querries",
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name of the Quest",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "path",
+            "description": "email of the quest",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "message",
+            "in": "path",
+            "description": "message from the quest",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": ""
+            }
+          }
+        }
+      }
+    },
+    "/queries/delete/{id}":{
+      "delete":{
+        "tags": ["Querries"],
+        "summary": "Delete a querries",
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the blog post",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": ""
+            }
+          }
+        }
+      }
+    }
     }
   }
   
-}
