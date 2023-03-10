@@ -484,6 +484,13 @@
             "description": "Id of the blog post",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "commentBody",
+            "in": "path",
+            "description": "comment of the blog post",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
