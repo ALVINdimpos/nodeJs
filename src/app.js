@@ -49,6 +49,11 @@ const swaggerSpec = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+const server = app.listen(port, () => {
+  setTimeout(() => {
+    console.log(`Server listening on port ${port}`);
+  }, 0);
 });
+
+module.exports = server;
+
