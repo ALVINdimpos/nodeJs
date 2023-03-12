@@ -37,7 +37,7 @@ app.use("/api", querriesRoutes);
 app.use("/api", authRoutes);
 
 // Set up Swagger
-const swaggerDefinition = require('./swagger.json');
+const swaggerDefinition = require('./swagger');
 
 const options = {
   swaggerDefinition,
