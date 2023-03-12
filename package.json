@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "npm run build && node ./dist/app",
+    "test": "jest --verbose",
+    "start": "node ./dist/app",
     "dev": "nodemon --exec babel-node ./src/app.js",
     "build": "babel src -d dist"
   },
