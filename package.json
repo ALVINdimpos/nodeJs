@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose",
-    "start": "npm run build && node ./dist/app",
+    "start": "node ./dist/app",
     "dev": "nodemon --exec babel-node ./src/app.js",
     "build": "babel src -d dist"
   },
