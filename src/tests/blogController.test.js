@@ -12,7 +12,7 @@ describe('Blog API', () => {
       image: 'https://example.com/image.png'
     };
 
-    const res = await request(app).post('/blog/create').send(newBlog);
+    const res = await request(app).post('/api/blog/create').send(newBlog);
     expect(res.statusCode).toEqual(200);
     expect(res.body.title).toEqual(newBlog.title);
     expect(res.body.content).toEqual(newBlog.content);
@@ -23,14 +23,14 @@ describe('Blog API', () => {
   });
 
   test('should get all blogs', async () => {
-    const res = await request(app).get('/blogs');
+    const res = await request(app).get('/api/blogs');
     expect(res.statusCode).toEqual(200);
     expect(Array.isArray(res.body)).toBe(true);
     expect(res.body.length).toBeGreaterThan(0);
   });
 
   test('should get a blog by ID', async () => {
-    const res = await request(app).get(`/blog/${savedBlog._id}`);
+    const res = await request(app).get(`/api/blog/${savedBlog._id}`);
     expect(res.statusCode).toEqual(200);
     expect(res.body.title).toEqual(savedBlog.title);
     expect(res.body.content).toEqual(savedBlog.content);
@@ -47,24 +47,25 @@ describe('Blog API', () => {
     };
 
     const res = await request(app)
-      .put(`/blog/update/${savedBlog._id}`)
+      .put(`/api/blog/update/${savedBlog._id}`)
       .send(updatedBlog);
     expect(res.statusCode).toEqual(200);
     expect(res.body.title).toEqual(updatedBlog.title);
     expect(res.body.content).toEqual(updatedBlog.content);
     expect(res.body.author).toEqual(updatedBlog.author);
     expect(res.body.image).toEqual(updatedBlog.image);
-  });
 
+    savedBlog = res.body; // update the saved blog with the new data
+  });
   test('should delete a blog', async () => {
-    const res = await request(app).delete(`/blog/delete/${savedBlog._id}`);
+    const res = await request(app).delete(`/api/blog/delete/${savedBlog._id}`);
     expect(res.statusCode).toEqual(200);
     expect(res.body.title).toEqual(savedBlog.title);
     expect(res.body.content).toEqual(savedBlog.content);
     expect(res.body.author).toEqual(savedBlog.author);
     expect(res.body.image).toEqual(savedBlog.image);
 
-    const res2 = await request(app).get(`/blogs/${savedBlog._id}`);
+    const res2 = await request(app).get(`/api/blogs/${savedBlog._id}`);
     expect(res2.statusCode).toEqual(404);
   });
 });
