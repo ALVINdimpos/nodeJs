@@ -9,7 +9,7 @@ describe('Blog API', () => {
       title: 'Test Blog',
       content: 'Lorem ipsum dolor sit amet',
       author: 'John Doe',
-      image: 'https://example.com/image.png'
+      image: 'https://fastly.picsum.photos/id/9/5000/3269.jpg'
     };
 
     const res = await request(app).post('/api/blog/create').send(newBlog);

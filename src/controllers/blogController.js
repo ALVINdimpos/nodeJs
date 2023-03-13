@@ -1,4 +1,4 @@
-import Blog from "../models/Blog";
+import Blog from "../models/Blog.js";
 import Joi from "joi";
 
 exports.getAllBlogs = async (req, res) => {
