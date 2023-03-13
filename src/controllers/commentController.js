@@ -1,4 +1,4 @@
-import Comment from "../models/comment";
+import Comment from "../models/comment.js";
 import Joi from "joi";
 
 // Create a comment
