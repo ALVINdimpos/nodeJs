@@ -1,4 +1,4 @@
-{
+export const swaggerDefinition ={
   "swagger": "2.0",
   "info": {
     "title": "My Brand API",

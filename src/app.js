@@ -37,7 +37,7 @@ app.use("/api", querriesRoutes);
 app.use("/api", authRoutes);
 
 // Set up Swagger
-const swaggerDefinition = require('./swagger');
+import {swaggerDefinition} from "./swagger.js"
 
 const options = {
   swaggerDefinition,
@@ -54,6 +54,7 @@ const server = app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
   }, 0);
 });
+
 
 module.exports = server;
 
