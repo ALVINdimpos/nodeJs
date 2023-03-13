@@ -1,5 +1,5 @@
 // const User = require('../models/User');
-import User from "../models/User";
+import User from "../models/User.js";
 import generateToken from "../utils/generateToken";
 import bcrypt from "bcrypt";
 
