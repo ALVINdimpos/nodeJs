@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/queries', getAllQueries);
 
 // Create a new query
-router.post('/queries/create', createQuery);
+router.post('/querry/create', createQuery);
 
 // Update an existing query
 router.put('/queries/update/:id', updateQuery);
