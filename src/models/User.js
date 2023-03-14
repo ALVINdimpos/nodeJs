@@ -29,7 +29,8 @@ const UserSchema = new Schema({
 UserSchema.pre("save", async function (next) {
   const user = this;
 
-  if (!user.isModified("password") && !user.isModified("confirmpassword")) return next();
+  if (!user.isModified("password") && !user.isModified("confirmpassword"))
+    return next();
 
   try {
     const salt = await bcrypt.genSaltSync(10);

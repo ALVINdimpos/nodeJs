@@ -1,24 +1,27 @@
 // ../models/queries.js
 
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const queriesSchema = new Schema({
-  name: {
-    type: String,
-    required: true
+const queriesSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    message: {
+      type: String,
+      required: true,
+    },
   },
-  email: {
-    type: String,
-    required: true
-  },
-  message: {
-    type: String,
-    required: true
-  }
-}, { timestamps: true });
+  { timestamps: true }
+);
 
-const queriesModel = mongoose.model('queries', queriesSchema);
+const queriesModel = mongoose.model("queries", queriesSchema);
 
 export { queriesModel };
