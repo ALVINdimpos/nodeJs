@@ -1,14 +1,15 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const commentController = require("../controllers/commentController");
+import { createComment, getComments, deleteComment } from "../controllers/commentController.js";
+
 
 // POST /blog/:blogId/comments
-router.post("/blog/create/:blogId/comments", commentController.createComment);
+router.post("/blog/create/:blogId/comments",createComment);
 
 // GET /blogs/:blogId/comments
-router.get("/blog/:blogId/comments", commentController.getComments);
+router.get("/blog/:blogId/comments", getComments);
 
 // DELETE /blogs/:blogId/comments/:commentId
-router.delete("/blog/:blogId/comments/:commentId", commentController.deleteComment);
+router.delete("/blog/:blogId/comments/:commentId", deleteComment);
 
-module.exports = router;
+export default router;

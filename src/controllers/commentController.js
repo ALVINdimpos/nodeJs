@@ -2,7 +2,7 @@ import Comment from "../models/comment.js";
 import Joi from "joi";
 
 // Create a comment
-exports.createComment = async (req, res, next) => {
+export const createComment = async (req, res, next) => {
   try {
     const { error } = validateComment(req.body);
     if (error) {
@@ -23,7 +23,7 @@ exports.createComment = async (req, res, next) => {
 };
 
 // Get all comments for a blog
-exports.getComments = async (req, res, next) => {
+export const getComments = async (req, res, next) => {
   try {
     const comments = await Comment.find({ blog: req.params.blogId });
 
@@ -34,7 +34,7 @@ exports.getComments = async (req, res, next) => {
 };
 
 // Delete a comment
-exports.deleteComment = async (req, res, next) => {
+export const deleteComment = async (req, res, next) => {
   try {
     const comment = await Comment.findOne({
       _id: req.params.commentId,

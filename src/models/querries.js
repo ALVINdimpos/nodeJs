@@ -1,6 +1,10 @@
-const mongoose = require('mongoose');
+// ../models/queries.js
 
-const queriesSchema = new mongoose.Schema({
+import mongoose from 'mongoose';
+
+const { Schema } = mongoose;
+
+const queriesSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -12,13 +16,9 @@ const queriesSchema = new mongoose.Schema({
   message: {
     type: String,
     required: true
-  },
-  date: {
-    type: Date,
-    default: Date.now
   }
-});
+}, { timestamps: true });
 
-const queriesModel = mongoose.model('Queries', queriesSchema);
+const queriesModel = mongoose.model('queries', queriesSchema);
 
-module.exports = queriesModel;
+export { queriesModel };

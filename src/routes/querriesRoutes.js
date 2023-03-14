@@ -1,18 +1,18 @@
-const express = require('express');
-const queriesController = require('../controllers/querriesController');
+import express from 'express';
+import {getAllQueries,createQuery, updateQuery,deleteQuery} from '../controllers/querriesController.js';
 
 const router = express.Router();
 
 // Retrieve all queries
-router.get('/queries', queriesController.getAllQueries);
+router.get('/queries', getAllQueries);
 
 // Create a new query
-router.post('/queries/create', queriesController.createQuery);
+router.post('/queries/create', createQuery);
 
 // Update an existing query
-router.put('/queries/update/:id', queriesController.updateQuery);
+router.put('/queries/update/:id', updateQuery);
 
 // Delete a query
-router.delete('/queries/delete/:id', queriesController.deleteQuery);
+router.delete('/queries/delete/:id',deleteQuery);
 
-module.exports = router;
+export default router;
