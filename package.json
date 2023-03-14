@@ -1,11 +1,12 @@
 {
   "name": "my_brand",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest --verbose",
-    "start": "node ./dist/app",
+    "start": "node  ./src/app",
     "dev": "nodemon --exec babel-node ./src/app.js",
     "build": "babel src -d dist"
   },

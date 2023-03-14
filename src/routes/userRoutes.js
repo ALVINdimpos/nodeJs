@@ -1,10 +1,9 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
-const { body, validationResult } = require("express-validator");
-const userController = require("../controllers/userController");
-
+import { body, validationResult } from "express-validator";
+import {getUsers,createUser,getUserById,updateUserById,deleteUserById} from "../controllers/userController.js";
 // GET /api/users - Get all users
-router.get("/users", userController.getUsers);
+router.get("/users", getUsers);
 
 // POST /api/users - Create a new user
 router.post(
@@ -23,16 +22,16 @@ router.post(
     }
     next();
   },
-  userController.createUser
+  createUser
 );
 
 // GET /api/users/:id - Get a user by ID
-router.get("/user/:id", userController.getUserById);
+router.get("/user/:id", getUserById);
 
 // PUT /api/users/:id - Update a user by ID
-router.put("/user/update/:id", userController.updateUserById);
+router.put("/user/update/:id", updateUserById);
 
 // DELETE /api/users/:id - Delete a user by ID
-router.delete("/user/delete/:id", userController.deleteUserById);
+router.delete("/user/delete/:id", deleteUserById);
 
-module.exports = router;
+export default router;

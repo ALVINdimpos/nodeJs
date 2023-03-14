@@ -1,5 +1,5 @@
-const request = require('supertest');
-const app = require('../app'); // assuming this is the main app file that uses the above module
+import request from 'supertest';
+import app from '../app'; // assuming this is the main app file that uses the above module
 
 describe('Blog API', () => {
   let savedBlog;

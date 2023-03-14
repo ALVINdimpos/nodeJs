@@ -1,16 +1,17 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const morgan = require("morgan");
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const authRoutes = require("./routes/authRoutes");
-const blogRoutes = require("./routes/blogRoutes");
-const userRoutes = require("./routes/userRoutes");
-const commentRoutes = require("./routes/commentRoutes");
-const querriesRoutes =require('./routes/querriesRoutes');
+import express from "express";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import morgan from "morgan";
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import authRoutes from "./routes/authRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
+import querriesRoutes from './routes/querriesRoutes.js';
 
-const { port, database } = require("./config/config");
+import { port, database } from "./config/config.js";
+
 const app = express();
 
 // Connect to the database
@@ -42,8 +43,7 @@ app.use("/api", authRoutes);
     res.send("Welcome to the MY BRAND API");
   }
  )
-// Set up Swagger
-import {swaggerDefinition} from "./swagger.js"
+ import { swaggerDefinition } from './swagger.js';
 
 const options = {
   swaggerDefinition,
@@ -61,6 +61,5 @@ const server = app.listen(port, () => {
   }, 0);
 });
 
-
-module.exports = server;
+export default server;
 
