@@ -40,7 +40,7 @@ app.use("/api", authRoutes);
  app.get(
   "/",
   (req, res) => {
-    res.send("Welcome to the MY BRAND API");
+    res.send("Welcome to the MY BRAND APIs");
   }
  )
  import { swaggerDefinition } from './swagger.js';
