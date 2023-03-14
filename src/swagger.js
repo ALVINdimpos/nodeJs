@@ -618,7 +618,7 @@ export const swaggerDefinition ={
         }
       }
     },
-    "/queries/create":{
+    "/querry/create":{
       "post":{
         "tags": ["Querries"],
         "summary": "Get a querries",
