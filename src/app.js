@@ -36,6 +36,12 @@ app.use("/api", commentRoutes);
 app.use("/api", querriesRoutes);
 app.use("/api", authRoutes);
 
+ app.get(
+  "/",
+  (req, res) => {
+    res.send("Welcome to the MY BRAND API");
+  }
+ )
 // Set up Swagger
 import {swaggerDefinition} from "./swagger.js"
 
