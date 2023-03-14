@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import cors from "cors";
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import authRoutes from "./routes/authRoutes.js";
@@ -30,6 +31,8 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Enable CORS
+app.use(cors());
 // Define routes
 app.use("/api", blogRoutes);
 app.use("/api", userRoutes);
