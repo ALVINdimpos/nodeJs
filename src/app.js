@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -10,7 +12,6 @@ import blogRoutes from "./routes/blogRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import querriesRoutes from './routes/querriesRoutes.js';
-import 'dotenv/config';
 
 import { PORT, MONGODB_URI } from "./config/config.js";
 
@@ -20,7 +21,7 @@ const app = express();
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log("MongoDB connected successfully");
+    console.log("Connected to MongoDB Atlas!");
   })
   .catch((err) => {
     console.error(err);
