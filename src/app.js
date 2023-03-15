@@ -13,13 +13,13 @@ import userRoutes from "./routes/userRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import querriesRoutes from './routes/querriesRoutes.js';
 
-import { PORT, MONGODB_URI } from "./config/config.js";
+import { PORT} from "./config/config.js";
 
 const app = express();
 
 // Connect to the database
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connected to MongoDB Atlas!");
   })
