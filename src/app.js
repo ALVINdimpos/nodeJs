@@ -11,13 +11,13 @@ import userRoutes from "./routes/userRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import querriesRoutes from './routes/querriesRoutes.js';
 
-import { port, database } from "./config/config.js";
+import { PORT, MONGODB_URI } from "./config/config.js";
 
 const app = express();
 
 // Connect to the database
 mongoose
-  .connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("MongoDB connected successfully");
   })
@@ -25,7 +25,6 @@ mongoose
     console.error(err);
     process.exit(1);
   });
-
 // Set up middleware
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -33,13 +32,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Enable CORS
 app.use(cors());
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
 // Define routes
 app.use("/api", blogRoutes);
 app.use("/api", userRoutes);
@@ -65,9 +57,9 @@ const swaggerSpec = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start the server
-const server = app.listen(port, () => {
+const server = app.listen(PORT, () => {
   setTimeout(() => {
-    console.log(`Server listening on port ${port}`);
+    console.log(`Server listening on port ${PORT}`);
   }, 0);
 });
 
