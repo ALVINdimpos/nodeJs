@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-import crypto from 'crypto';
 
-export const PORT = process.env.PORT;
-export const SECRET = process.env.SECRET || crypto.randomBytes(32).toString('hex');
+export const port = process.env.PORT;
+export const database = process.env.MONGODB_URI;
+export const secret = process.env.JWT_SECRET
