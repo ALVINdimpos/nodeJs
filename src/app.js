@@ -10,6 +10,7 @@ import blogRoutes from "./routes/blogRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import querriesRoutes from './routes/querriesRoutes.js';
+import 'dotenv/config';
 
 import { PORT, MONGODB_URI } from "./config/config.js";
 
@@ -25,6 +26,7 @@ mongoose
     console.error(err);
     process.exit(1);
   });
+
 // Set up middleware
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -32,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Enable CORS
 app.use(cors());
+
 // Define routes
 app.use("/api", blogRoutes);
 app.use("/api", userRoutes);
@@ -39,13 +42,11 @@ app.use("/api", commentRoutes);
 app.use("/api", querriesRoutes);
 app.use("/api", authRoutes);
 
- app.get(
-  "/",
-  (req, res) => {
-    res.send("Welcome to the MY BRAND APIs");
-  }
- )
- import { swaggerDefinition } from './swagger.js';
+app.get("/", (req, res) => {
+  res.send("Welcome to the MY BRAND APIs");
+});
+
+import { swaggerDefinition } from './swagger.js';
 
 const options = {
   swaggerDefinition,
@@ -58,10 +59,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start the server
 const server = app.listen(PORT, () => {
-  setTimeout(() => {
-    console.log(`Server listening on port ${PORT}`);
-  }, 0);
+  console.log(`Server listening on port ${PORT}`);
 });
 
 export default server;
-
