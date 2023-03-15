@@ -15,4 +15,6 @@ router.put('/queries/update/:id', updateQuery);
 // Delete a query
 router.delete('/queries/delete/:id',deleteQuery);
 
+
+
 export default router;
