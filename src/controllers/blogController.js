@@ -55,7 +55,7 @@ export const deleteBlog = async (req, res) => {
 function validateBlog(blog) {
   const schema = Joi.object({
     title: Joi.string().min(5).max(255).required(),
-    content: Joi.string().min(10).max(2000).required(),
+    content: Joi.string().min(10).max(200000).required(),
     author: Joi.string().min(2).max(100).required(),
     image: Joi.string().min(2).max(2000).required(),
   });

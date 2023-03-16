@@ -11,7 +11,6 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 10,
-    maxlength: 2000,
   },
   author: {
     type: String,
