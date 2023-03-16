@@ -23,6 +23,12 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      PORT: ${{secrets.PORT}}
+      MONGODB_URI: ${{secrets.MONGODB_URI}}
+      GMAIL_USER: ${{secrets.GMAIL_USER}}
+      GMAIL_PASS: ${{secrets.GMAIL_PASS}}
+      SECRET: ${{secrets.SECRET}}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
