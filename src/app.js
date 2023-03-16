@@ -17,6 +17,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors());
+mongoose.set('strictQuery', false);
 
 // Connect to the database
 mongoose.connect(database, {
