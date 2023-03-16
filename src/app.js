@@ -16,7 +16,9 @@ const app = express();
 
 // Connect to the database
 mongoose
-  .connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(database, { useNewUrlParser: true,
+    useUnifiedTopology: true,
+    connectTimeoutMS: 60000,})
   .then(() => {
     console.log("Connected to MongoDB Atlas!");
   })
