@@ -16,11 +16,16 @@ export const login = async (req, res) => {
     if (!passwordMatches) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
-    // If the email and password are valid, generate a JWT token and send it in the response
+    // If the email and password are valid, generate a JWT token
     const token = generateToken(user);
-    res.status(200).json({ token });
+
+    
+    // Send the token in the response header
+    res.set("Authorization", `Bearer ${token}`).status(200).send();
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
