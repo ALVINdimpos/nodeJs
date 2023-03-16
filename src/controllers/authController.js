@@ -19,7 +19,7 @@ export const login = async (req, res) => {
     // If the email and password are valid, generate a JWT token
     const token = generateToken(user);
 
-    
+    res.status(200).json({ token });
     // Send the token in the response header
     res.set("Authorization", `Bearer ${token}`).status(200).send();
 
