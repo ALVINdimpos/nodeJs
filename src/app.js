@@ -1,31 +1,34 @@
 import express from "express";
+import cors from 'cors';
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { port, database } from "./config/config.js";
 import authRoutes from "./routes/authRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import querriesRoutes from './routes/querriesRoutes.js';
-
-import { port, database } from "./config/config.js";
+import { swaggerDefinition } from './swagger.js';
 
 const app = express();
 
+// Enable CORS
+app.use(cors());
+
 // Connect to the database
-mongoose
-  .connect(database, { useNewUrlParser: true,
+mongoose.connect(database, {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
-    connectTimeoutMS: 60000,})
-  .then(() => {
+    connectTimeoutMS: 60000
+}).then(() => {
     console.log("Connected to MongoDB Atlas!");
-  })
-  .catch((err) => {
+}).catch((err) => {
     console.error(err);
     process.exit(1);
-  });
+});
 
 // Set up middleware
 app.use(morgan("dev"));
@@ -39,17 +42,13 @@ app.use("/api", commentRoutes);
 app.use("/api", querriesRoutes);
 app.use("/api", authRoutes);
 
- app.get(
-  "/",
-  (req, res) => {
+app.get("/", (req, res) => {
     res.send("Welcome to the MY BRAND APIs");
-  }
- )
- import { swaggerDefinition } from './swagger.js';
+});
 
 const options = {
-  swaggerDefinition,
-  apis: ['../routes/*.js'], // Path to the API routes files
+    swaggerDefinition,
+    apis: ['../routes/*.js'], // Path to the API routes files
 };
 
 const swaggerSpec = swaggerJSDoc(options);
@@ -58,10 +57,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start the server
 const server = app.listen(port, () => {
-  setTimeout(() => {
-    console.log(`Server listening on port ${port}`);
-  }, 0);
+    setTimeout(() => {
+        console.log(`Server listening on port ${port}`);
+    }, 0);
 });
 
 export default server;
-
