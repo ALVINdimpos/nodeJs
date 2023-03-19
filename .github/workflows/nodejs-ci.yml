@@ -5,54 +5,52 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]
-
+      
 jobs:
   build:
+    name: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-
-  test:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Dependencies
+      run: npm install
+   unit-tests:
     runs-on: ubuntu-latest
-    needs: build
     env:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
       GMAIL_USER: ${{ secrets.GMAIL_USER}}
       GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
       SECRET: ${{ secrets.SECRET}}
       PORT: ${{ secrets.PORT}}
+    strategy:
+      matrix:
+        node-version: ${{ matrix.node-version }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: export PATH="$PATH:./node_modules/.bin" && jest --verbose
-
-  deploy:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm i
+    - run: npm run test   
+  test:
+    name: run-unit test
     runs-on: ubuntu-latest
-    needs: test
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-      - name: Deploy to production
-        run: npm run deploy
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER}}
-          GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
-          SECRET: ${{ secrets.SECRET}}
-          PORT: ${{ secrets.PORT}}
-
-
-
-
-
-
-
-
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Dependencies
+      run: npm install
+    - name: test
+      run: npm run test
+  
