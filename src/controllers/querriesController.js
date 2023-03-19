@@ -19,7 +19,6 @@ export const createQuery = async (req, res, next) => {
     const { name, email, message } = req.body;
     const query = new queriesModel({ name, email, message });
     await query.save();
-
     // Send email notification to website owner
     const transporter = nodemailer.createTransport({
       service: "gmail",
