@@ -19,55 +19,43 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install Dependencies
       run: npm install
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-  unit-tests:
-    name: unit-tests
-    runs-on: ubuntu-latest
-    env:
-      MONGODB_URI: ${{ secrets.MONGODB_URI }}
-      GMAIL_USER: ${{ secrets.GMAIL_USER}}
-      GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
-      SECRET: ${{ secrets.SECRET}}
-      PORT: ${{ secrets.PORT}}
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: Install Dependencies
-      run: npm install
-    - name: Run Unit Tests
-      run: npm run test:unit
-  e2e-tests:
-    name: e2e-tests
-    runs-on: ubuntu-latest
-    env:
-      MONGODB_URI: ${{ secrets.MONGODB_URI }}
-      GMAIL_USER: ${{ secrets.GMAIL_USER}}
-      GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
-      SECRET: ${{ secrets.SECRET}}
-      PORT: ${{ secrets.PORT}}
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: Install Dependencies
 
+  unit-tests:
+    runs-on: ubuntu-latest
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      GMAIL_USER: ${{ secrets.GMAIL_USER}}
+      GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+      SECRET: ${{ secrets.SECRET}}
+      PORT: ${{ secrets.PORT}}
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm i
+    - run: npm run test
+
+  test:
+    name: run-unit test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Dependencies
       run: npm install
-    - name: Run E2E Tests
-      run: npm run test:e2e
+    - name: test
+      run: npm run test
