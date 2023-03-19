@@ -11,51 +11,32 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install Dependencies
-      run: npm install
-
-  unit-tests:
-    runs-on: ubuntu-latest
-    env:
-      MONGODB_URI: ${{ secrets.MONGODB_URI }}
-      GMAIL_USER: ${{ secrets.GMAIL_USER}}
-      GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
-      SECRET: ${{ secrets.SECRET}}
-      PORT: ${{ secrets.PORT}}
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm i
-    - run: npm run test
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - name: Install Dependencies
+        run: npm install
 
   test:
     name: run-unit test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      GMAIL_USER: ${{ secrets.GMAIL_USER }}
+      GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+      SECRET: ${{ secrets.SECRET }}
+      PORT: ${{ secrets.PORT }}
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install Dependencies
-      run: npm install
-    - name: test
-      run: npm run test
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - name: Install Dependencies
+        run: npm install
+      - name: Run tests
+        run: export PATH="$PATH:./node_modules/.bin" && jest --verbose
