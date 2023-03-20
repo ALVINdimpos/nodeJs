@@ -16,6 +16,11 @@
   ],
   "author": "alvin",
   "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "detectOpenHandles": true
+  }
+,  
   "dependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.0",
