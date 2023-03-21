@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { port, database } from "./config/config.js";
 import authRoutes from "./routes/authRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -24,19 +23,6 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-
-// Connect to the database
-mongoose.connect(database, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    connectTimeoutMS: 60000
-}).then(() => {
-    console.log("Connected to MongoDB Atlas!");
-}).catch((err) => {
-    console.error(err);
-    process.exit(1);
-});
-
 // Set up middleware
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -62,12 +48,4 @@ const swaggerSpec = swaggerJSDoc(options);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Start the server
-const server = app.listen(port, () => {
-    setTimeout(() => {
-        console.log(`Server listening on port ${port}`);
-    }, 0);
-});
-
-
-export default server;
+export default app;

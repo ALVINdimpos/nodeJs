@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "jest --verbose",
-    "start": "node  ./src/app",
-    "dev": "nodemon --exec babel-node ./src/app.js",
+    "start": "node  ./src/server.js",
+    "dev": "nodemon --exec babel-node ./src/server.js",
     "build": "npm install && echo 'Build successful'"
   },
   "keywords": [
