@@ -8,7 +8,8 @@
     "test": "jest --verbose",
     "start": "node  ./src/server.js",
     "dev": "nodemon --exec babel-node ./src/server.js",
-    "build": "npm install && echo 'Build successful'"
+    "build": "npm install && echo 'Build successful'",
+    "deploy": "npm install && npm run build && echo 'Deploy successful'"
   },
   "keywords": [
     "nodejs",
