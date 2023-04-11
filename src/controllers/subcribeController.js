@@ -19,7 +19,7 @@ export const subscribe = async (req, res) => {
         });
         const mailOptions = {
             from: email, // set the from field to the email variable
-            to: 'fistonalvin@gmail.com',
+            to: 'visibilitymag@gmail.com',
             subject: 'New Subscriber',
             html: `You have a new subscriber from ${email}`
         };

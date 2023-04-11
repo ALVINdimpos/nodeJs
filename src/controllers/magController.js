@@ -22,7 +22,7 @@ export const createQuery = async (req, res, next) => {
     
     const mailOptions = {
       from: email, // set the from field to the email variable
-      to: "fistonalvin@gmail.com",
+      to: "visibilitymag@gmail.com",
       subject: `${subject}`,
       html: `Name: ${name} <br> Email: ${email} <br> Tel: ${tel} <br> Message: ${message}`,
     };
