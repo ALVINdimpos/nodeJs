@@ -1,4 +1,4 @@
-import { queriesModel } from "../models/querries.js";
+import { magModel } from "../models/Mag.js";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config();
@@ -8,8 +8,8 @@ const magController = {};
 // Create a new query
 export const createQuery = async (req, res, next) => {
   try {
-    const { name, email, message } = req.body;
-    const query = new queriesModel({ name, email, message });
+    const { name, email, message ,tel,subject} = req.body;
+    const query = new magModel({ name, email, message });
     await query.save();
     // Send email notification to website owner
     const transporter = nodemailer.createTransport({
@@ -23,8 +23,8 @@ export const createQuery = async (req, res, next) => {
     const mailOptions = {
       from: email, // set the from field to the email variable
       to: "fistonalvin@gmail.com",
-      subject: "New Query",
-      html: `You have a new query from ${name} (${email}): ${message}`,
+      subject: `${subject}`,
+      html: `Name: ${name} <br> Email: ${email} <br> Tel: ${tel} <br> Message: ${message}`,
     };
 
     await transporter.sendMail(mailOptions);

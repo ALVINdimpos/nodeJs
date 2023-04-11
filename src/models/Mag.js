@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
@@ -15,10 +14,16 @@ const queriesSchema = new Schema(
     message: {
       type: String,
     },
+    tel: {
+      type: String,
+    },
+    subject: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
 
 const magModel = mongoose.model("magqueries", queriesSchema);
 
-export default magModel;
+export { magModel};
