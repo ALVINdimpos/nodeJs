@@ -3,19 +3,18 @@ import app from './app.js';
 import { port, database } from "./config/config.js";
 import mongoose from 'mongoose';
 // Connect to the database
-mongoose.connect(database, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    connectTimeoutMS: 60000
-}).then(() => {
-    console.log("Connected to MongoDB Atlas!");
-}).catch((err) => {
-    console.error(err);
-    process.exit(1);
-});
-// Start the server
-const server = app.listen(port, () => {
-    setTimeout(() => {
-        console.log(`Server listening on port ${port}`);
-    }, 0);
-});
+const connectDB = async () => {
+    try {
+      const conn = await mongoose.connect(database);
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.log(error);
+      process.exit(1);
+    }
+  }
+//Connect to the database before listening
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log("listening for requests");
+    })
+})
