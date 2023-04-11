@@ -8,8 +8,10 @@ import swaggerUi from 'swagger-ui-express';
 import authRoutes from "./routes/authRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import subscribe from "./controllers/subcribeController.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import querriesRoutes from './routes/querriesRoutes.js';
+import magRoutes from './routes/magRoutes.js';
 import { swaggerDefinition } from './swagger.js';
 
 const app = express();
@@ -34,6 +36,8 @@ app.use("/api", blogRoutes);
 app.use("/api", userRoutes);
 app.use("/api", commentRoutes);
 app.use("/api", querriesRoutes);
+app.use("/api", magRoutes);
+app.use("/api", subscribe);
 
 app.get("/", (req, res) => {
     res.send("Welcome to the MY BRAND APIs");

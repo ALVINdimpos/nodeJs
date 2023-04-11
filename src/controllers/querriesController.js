@@ -1,6 +1,7 @@
 import { queriesModel } from "../models/querries.js";
 import nodemailer from "nodemailer";
-
+import dotenv from "dotenv";
+dotenv.config();
 const queriesController = {};
 
 // Retrieve all queries
