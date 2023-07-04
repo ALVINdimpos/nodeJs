@@ -82,6 +82,6 @@ Here are some related projects that you might be interested in:
 
     My Brand Website - The frontend for the My Brand website that uses the My Brand API.
 
-Licensing
+Licensing.
 
 The My Brand API is licensed under the MIT License.
